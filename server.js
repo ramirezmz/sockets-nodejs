@@ -3,10 +3,11 @@ const { Server } = require('net');
 const server = new Server();
 
 server.on("connection", (socket) => {
-   console.log(` New connection from ${socket.remoteAddress}:${socket.remotePort}`)
+   const remoteSocket = `${socket.remoteAddress}:${socket.remotePort}`
+   console.log(` New connection from ${remoteSocket}`)
    socket.setEncoding('utf-8')
    socket.on("data", (data) => {
-      console.log(data)
+      socket.write(data)
    })
 })
 
